@@ -25,6 +25,8 @@ namespace Project_Launcher
         {
             InitializeComponent();
             LoadData();
+
+            
         }
 
         private void LoadData()
@@ -70,6 +72,5 @@ namespace Project_Launcher
                 CardsPanel.Children.Add(card);
             }
         }
-        
     }
 }
