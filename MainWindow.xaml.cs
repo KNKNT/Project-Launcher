@@ -27,6 +27,8 @@ namespace Project_Launcher
         public MainWindow()
         {
             InitializeComponent();
+            LoadData();
+
         }
         int categoriesCount = 0;
         public void categoriesAdd(object sender, RoutedEventArgs e) =>
@@ -38,6 +40,5 @@ namespace Project_Launcher
             if (e.NewValue is TreeViewItem tree)
                 (selectedItem, treeItemUid) = (tree, tree.Uid);
         }
-
     }
 }

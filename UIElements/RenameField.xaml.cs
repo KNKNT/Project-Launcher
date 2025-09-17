@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Project_Launcher
+namespace Project_Launcher.UIElements
 {
     /// <summary>
-    /// Логика взаимодействия для Card.xaml
+    /// Логика взаимодействия для RenameField.xaml
     /// </summary>
-    public partial class Card : UserControl
+    public partial class RenameField : UserControl
     {
-        public Card()
+        public RenameField()
         {
             InitializeComponent();
         }
