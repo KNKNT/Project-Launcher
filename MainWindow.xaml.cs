@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project_Launcher.UIElements;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -31,7 +32,6 @@ namespace Project_Launcher
 
         private void LoadData()
         {
-            
             var projects = new List<ApplicationCard>
             {
                 new ApplicationCard { },
@@ -71,6 +71,11 @@ namespace Project_Launcher
                 card.DataContext = project; 
                 CardsPanel.Children.Add(card);
             }
+        }
+
+        private void RenameButton_Click(object sender, RoutedEventArgs e)
+        {
+            RenameField.Visibility = Visibility.Visible;
         }
     }
 }

@@ -16,7 +16,7 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <TextBlock x:Name="ElementNameTextBlock" Text="Элемент списка" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Center"/>
+                <TextBlock x:Name="ElementNameTextBlock" Text="Выберите элемент списка" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Center"/>
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -24,8 +24,7 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBox Background="#E8E8E8"
-                             x:Name="ElementNameTextBox"
-                             Text="123" 
+                             x:Name="ElementNameTextBox" 
                              BorderBrush="#BCBCBC" 
                              BorderThickness="1" 
                              FontWeight="DemiBold"

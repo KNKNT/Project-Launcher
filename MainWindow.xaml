@@ -166,7 +166,7 @@
                         </Viewbox>
                     </Button>
 
-                    <Button Width="40" Background="{x:Null}" BorderBrush="{x:Null}" Style="{StaticResource FluentButton}" Margin="15,0,15,0">
+                    <Button x:Name="RenameButton" Width="40" Background="{x:Null}" BorderBrush="{x:Null}" Style="{StaticResource FluentButton}" Margin="15,0,15,0" Click="RenameButton_Click">
                         <Viewbox Stretch="Uniform">
                             <Canvas Width="34" Height="34">
                                 <Path StrokeThickness="2" Stroke="#FF6F6F6F" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" HorizontalAlignment="Left" Stretch="Fill" VerticalAlignment="Top" Width="12" Canvas.Left="17" Canvas.Top="5">
@@ -225,8 +225,7 @@
             </TreeView>
         </DockPanel>
 
-        <rename:RenameField VerticalAlignment="Bottom" Grid.Column="0" Width="auto"/>
-
+        <rename:RenameField x:Name="RenameField" Visibility="Hidden" VerticalAlignment="Bottom" Grid.Column="0" Width="auto"/>
 
         <DockPanel Grid.Column="1">
             <Border DockPanel.Dock="Top" Height="50">
