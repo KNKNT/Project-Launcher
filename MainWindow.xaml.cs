@@ -22,16 +22,23 @@ namespace Project_Launcher
     /// </summary>
     public partial class MainWindow : Window
     {
+        string treeUid;
+        string treeItemUid;
+        public TreeViewItem selectedItem { get; set; }
         public MainWindow()
         {
             InitializeComponent();
             LoadData();
 
-            
         }
-
-        private void LoadData()
+        int categoriesCount = 0;
+        public void categoriesAdd(object sender, RoutedEventArgs e) =>
+        categoiesPanel.Items.Add(new TreeViewItem { Header = $"Kategoiya {++categoriesCount}" });
+        public void categoriesDel(object sender, RoutedEventArgs a) =>
+        (selectedItem.Parent as ItemsControl).Items.Remove(selectedItem);
+        private void categoiesPanel_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
+            
             var projects = new List<ApplicationCard>
             {
                 new ApplicationCard { },
