@@ -133,7 +133,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
+
         <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource CustomTreeViewItemStyle}"/>
 
         <Style x:Key="PanelButton" TargetType="{x:Type Button}">
@@ -171,7 +171,7 @@
             <Border DockPanel.Dock="Top" BorderBrush="Gray" BorderThickness="0,0,0,1" Height="50" Padding="5">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 
-                    <Button Width="40" Background="{x:Null}" BorderBrush="{x:Null}" Style="{StaticResource PanelButton}">
+                    <Button Width="40" Background="{x:Null}" BorderBrush="{x:Null}" Style="{StaticResource PanelButton}" Click="categoriesAdd">
                         <Viewbox Stretch="Uniform">
                             <Canvas Width="34" Height="34" HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <Path StrokeThickness="2" Stroke="#FF6F6F6F" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Canvas.Left="5.5" Canvas.Top="6">
@@ -188,7 +188,7 @@
                         </Viewbox>
                     </Button>
 
-                    <Button Width="40" Background="{x:Null}" BorderBrush="{x:Null}" Style="{StaticResource PanelButton}" Margin="15,0,15,0">
+                    <Button Width="40" Background="{x:Null}" BorderBrush="{x:Null}" Style="{StaticResource PanelButton}" Margin="15,0,15,0" Name="renameCategories">
                         <Viewbox Stretch="Uniform">
                             <Canvas Width="34" Height="34">
                                 <Path StrokeThickness="2" Stroke="#FF6F6F6F" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" HorizontalAlignment="Left" Stretch="Fill" VerticalAlignment="Top" Width="12" Canvas.Left="17" Canvas.Top="5">
@@ -205,7 +205,7 @@
                         </Viewbox>
                     </Button>
 
-                    <Button Width="40" Background="{x:Null}" BorderBrush="{x:Null}" Style="{StaticResource PanelButton}">
+                    <Button Width="40" Background="{x:Null}" BorderBrush="{x:Null}" Style="{StaticResource PanelButton}" Name="deleteCategories" Click="categoriesDel">
                         <Viewbox Stretch="Uniform">
                             <Canvas Width="34" Height="34">
                                 <Path StrokeThickness="2" Stroke="#FF6F6F6F" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Canvas.Left="5.5" Canvas.Top="5.5">
@@ -219,29 +219,8 @@
                 </StackPanel>
             </Border>
 
-            <TreeView DockPanel.Dock="Bottom" FontSize="20" Background="{x:Null}" >
-                <TreeViewItem Header="Базы данных">
-                    <TreeViewItem Header="MS SQL Server"/>
-                    <TreeViewItem Header="MySQL">
-                        <TreeViewItem Header="Visual Basic" />
-                        <TreeViewItem Header="Visual Basic" />
-                    </TreeViewItem>
-                    <TreeViewItem Header="MongoDB"/>
-                    <TreeViewItem Header="Postgres"/>
-                </TreeViewItem>
+            <TreeView DockPanel.Dock="Bottom" FontSize="20" Name="categoiesPanel" SelectedItemChanged="categoiesPanel_SelectedItemChanged">
 
-                <TreeViewItem Header="Языки программирования">
-                    <TreeViewItem Header="C-языки">
-                        <TreeViewItem Header="C#" />
-                        <TreeViewItem Header="C/C++" />
-                        <TreeViewItem Header="Java" />
-                    </TreeViewItem>
-                    <TreeViewItem Header="Basic">
-                        <TreeViewItem Header="Visual Basic" />
-                        <TreeViewItem Header="VB.Net" />
-                        <TreeViewItem Header="PureBasic" />
-                    </TreeViewItem>
-                </TreeViewItem>
             </TreeView>
         </DockPanel>
 
@@ -252,10 +231,10 @@
             <ScrollViewer>
                 <WrapPanel x:Name="CardsPanel" DockPanel.Dock="Bottom">
 
-                    
+
 
                 </WrapPanel>
-                
+
             </ScrollViewer>
 
         </DockPanel>
