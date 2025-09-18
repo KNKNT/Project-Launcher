@@ -144,7 +144,7 @@
             <ColumnDefinition MinWidth="200" Width="Auto" MaxWidth="700"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        
+
         <DockPanel Grid.Column="0">
             <Border DockPanel.Dock="Top" BorderBrush="Gray" BorderThickness="0,0,0,1" Height="50" Padding="5">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -167,8 +167,29 @@
                         </Viewbox>
                     </Button>
 
+                    <Button Width="40" Background="{x:Null}" BorderBrush="{x:Null}" Style="{StaticResource FluentButton}" Margin="15,0,0,0" Name="AddCardButton">
 
-                    <Button Width="40" Background="{x:Null}" BorderBrush="{x:Null}" Style="{StaticResource FluentButton}" Margin="15,0,15,0" Name="renameCategories">
+                        <Viewbox Stretch="Uniform">
+                            <Canvas Width="34" Height="34">
+
+                                <Path StrokeThickness="0" Fill="#FF6F6F6F" Stroke="#FF6F6F6F" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Canvas.Top="7.193" HorizontalAlignment="Left" VerticalAlignment="Center" Height="21" Stretch="Fill" Canvas.Left="6.821" Width="21" RenderTransformOrigin="0.5,0.5">
+                                    <Path.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform ScaleY="-1"/>
+                                            <SkewTransform/>
+                                            <RotateTransform Angle="90"/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </Path.RenderTransform>
+                                    <Path.Data>
+                                        <PathGeometry Figures="M464 144H160c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16m-52 268H212V212h200zm452-268H560c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16m-52 268H612V212h200zm52 132H560c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V560c0-8.8-7.2-16-16-16m-52 268H612V612h200zM424 712H296V584c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v128H104c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h128v128c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V776h128c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8" FillRule="NonZero"/>
+                                    </Path.Data>
+                                </Path>
+                            </Canvas>
+                        </Viewbox>
+                    </Button>
+
+                    <Button Width="40" Background="{x:Null}" BorderBrush="{x:Null}" Style="{StaticResource FluentButton}" Margin="15,0,15,0" Name="RenameButton" Click="RenameButton_Click">
 
                         <Viewbox Stretch="Uniform">
                             <Canvas Width="34" Height="34">
@@ -199,6 +220,7 @@
                             </Canvas>
                         </Viewbox>
                     </Button>
+
                 </StackPanel>
             </Border>
 

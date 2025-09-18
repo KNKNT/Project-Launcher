@@ -28,17 +28,20 @@ namespace Project_Launcher
         public MainWindow()
         {
             InitializeComponent();
-            LoadData();
-
         }
         int categoriesCount = 0;
-        public void categoriesAdd(object sender, RoutedEventArgs e) =>
-        categoiesPanel.Items.Add(new TreeViewItem { Header = $"Kategoiya {++categoriesCount}" });
+        public void categoriesAdd(object sender, RoutedEventArgs e)
+        {
+            string header = $"Kategoiya {++categoriesCount}";
+            categoiesPanel.Items.Add(new TreeViewItem { Header = header});
+            RenameField.NameTextBlock.Text = header;
+            RenameField.NameTextBox.Text = header;
+        }
         public void categoriesDel(object sender, RoutedEventArgs a) =>
         (selectedItem.Parent as ItemsControl).Items.Remove(selectedItem);
         private void categoiesPanel_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            
+
             var projects = new List<ApplicationCard>
             {
                 new ApplicationCard { },
@@ -75,7 +78,7 @@ namespace Project_Launcher
             foreach (var project in projects)
             {
                 var card = new Card();
-                card.DataContext = project; 
+                card.DataContext = project;
                 CardsPanel.Children.Add(card);
             }
         }
