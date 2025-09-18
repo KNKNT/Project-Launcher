@@ -17,7 +17,6 @@ namespace Project_Launcher.backClass
             //[JSONIGNORE]
             private void getData()
             {
-                MainWindow.
             }
         }
         public class cards
@@ -27,6 +26,23 @@ namespace Project_Launcher.backClass
             public string name { get; set; }
             public string path { get; set; }
             public int itemCount{ get;set; }
+        }
+        private readonly jsonInterface _treeService;
+
+        public CategoryManager(jsonInterface treeService)
+        {
+            _treeService = treeService;
+        }
+
+        public void AddNewCategory(string name)
+        {
+            string id = Guid.NewGuid().ToString();
+
+            _treeService.AddCategory(name, id, (categoryId, categoryName) =>
+            {
+                Console.WriteLine($"Добавлено: {categoryName} (ID: {categoryId})");
+                // Дополнительные действия
+            });
         }
     }
 }

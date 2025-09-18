@@ -12,7 +12,6 @@ namespace Project_Launcher
     public interface jsonInterface
     {
         void addCategory(string _header, string _uid, Action<string, string> action = null);
-        void deleteCategory(string id);
     }
     public partial class MainWindow : Window, jsonInterface
     {
@@ -26,19 +25,19 @@ namespace Project_Launcher
         }
         public void categoriesAdd(object sender, RoutedEventArgs e)
         {
-            jsonClass json = new jsonClass();
-
             string _header = $"{categoriesCount++}";
             string _uid = $"{categoriesCount}";
-
-            TreeViewItem treeViewItem = new TreeViewItem
+            addCategory(_header, _uid, (id, name) =>
             {
-                Header = _header,
-                Uid = _uid
-            };
-            categoiesPanel.Items.Add(treeViewItem);
+                MessageBox.Show($"Добавлено: {name} (ID: {id})");
+            });
         }
-
+        public void addCategory(string _header, string _uid, Action<string, string> action = null)
+        {
+            TreeViewItem treeViewItem = new TreeViewItem { Header = _header, Uid = _uid };
+            categoiesPanel.Items.Add(treeViewItem);
+            action?.Invoke(_header, _uid);
+        }
         public void categoriesDel(object sender, RoutedEventArgs e) =>
         (selectedItem.Parent as ItemsControl).Items.Remove(selectedItem);
         private void categoiesPanel_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
@@ -46,5 +45,6 @@ namespace Project_Launcher
             if (e.NewValue is TreeViewItem tree)
                 (selectedItem, treeItemUid) = (tree, tree.Uid);
         }
+
     }
 }
