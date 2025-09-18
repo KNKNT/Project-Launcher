@@ -34,8 +34,8 @@ namespace Project_Launcher
         {
             string header = $"Kategoiya {++categoriesCount}";
             categoiesPanel.Items.Add(new TreeViewItem { Header = header});
-            RenameField.NameTextBlock.Text = header;
-            RenameField.NameTextBox.Text = header;
+            //RenameField.NameTextBlock.Text = header;
+            //RenameField.NameTextBox.Text = header;
         }
         public void categoriesDel(object sender, RoutedEventArgs a) =>
         (selectedItem.Parent as ItemsControl).Items.Remove(selectedItem);
