@@ -1,39 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Project_Launcher.backClass;
+using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using static Project_Launcher.backClass.jsonClass;
 
 namespace Project_Launcher
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public interface jsonInterface
+    {
+        void addCategory(string _header, string _uid, Action<string, string> action = null);
+        void deleteCategory(string id);
+    }
+    public partial class MainWindow : Window, jsonInterface
     {
         string treeUid;
         string treeItemUid;
-        public TreeViewItem selectedItem { get; set; }
+        public TreeViewItem selectedItem;
+        int categoriesCount = 0;
         public MainWindow()
         {
             InitializeComponent();
-            LoadData();
-
         }
-        int categoriesCount = 0;
-        public void categoriesAdd(object sender, RoutedEventArgs e) =>
-        categoiesPanel.Items.Add(new TreeViewItem { Header = $"Kategoiya {++categoriesCount}" });
-        public void categoriesDel(object sender, RoutedEventArgs a) =>
+        public void categoriesAdd(object sender, RoutedEventArgs e)
+        {
+            jsonClass json = new jsonClass();
+
+            string _header = $"{categoriesCount++}";
+            string _uid = $"{categoriesCount}";
+
+            TreeViewItem treeViewItem = new TreeViewItem
+            {
+                Header = _header,
+                Uid = _uid
+            };
+            categoiesPanel.Items.Add(treeViewItem);
+        }
+
+        public void categoriesDel(object sender, RoutedEventArgs e) =>
         (selectedItem.Parent as ItemsControl).Items.Remove(selectedItem);
         private void categoiesPanel_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
