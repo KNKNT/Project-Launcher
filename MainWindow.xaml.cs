@@ -29,5 +29,6 @@ namespace Project_Launcher
             categoiesPanel.Items.Add(new TreeViewItem { Header = header });
             RenameField.NameTextBox.Text = header;
         }
+
     }
 }
