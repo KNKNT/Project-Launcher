@@ -1,19 +1,9 @@
 ﻿using Project_Launcher.UIElements;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Project_Launcher
 {
@@ -22,21 +12,24 @@ namespace Project_Launcher
     /// </summary>
     public partial class MainWindow : Window
     {
-        string treeUid;
-        string treeItemUid;
-        public TreeViewItem selectedItem { get; set; }
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
         int categoriesCount = 0;
+        string header;
+        public TreeViewItem selectedItem { get; set; }
+        public MainWindow() => InitializeComponent();
+        private void categoriesDel(object sender, RoutedEventArgs a) => (selectedItem.Parent as ItemsControl).Items.Remove(selectedItem);
+        private void AddCardButton_Click(object sender, RoutedEventArgs e) => selectedItem.Items.Add(new TreeViewItem { Header = header });
+        private void categoiesPanel_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e) => selectedItem = e.NewValue as TreeViewItem;
+        public void rewriteText(string _text) => selectedItem.Header = _text;
+        private void RenameButton_Click(object sender, RoutedEventArgs e) => RenameField.Visibility = (RenameField.Visibility != Visibility.Visible)
+        ? Visibility.Visible
+        : Visibility.Hidden;
         public void categoriesAdd(object sender, RoutedEventArgs e)
         {
-            string header = $"Kategoiya {++categoriesCount}";
-            categoiesPanel.Items.Add(new TreeViewItem { Header = header});
-            RenameField.NameTextBlock.Text = header;
+            header = $"Kategoiya {++categoriesCount}";
+            categoiesPanel.Items.Add(new TreeViewItem { Header = header });
             RenameField.NameTextBox.Text = header;
         }
+
         public void categoriesDel(object sender, RoutedEventArgs a) =>
         (selectedItem.Parent as ItemsControl).Items.Remove(selectedItem);
         private void categoiesPanel_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)

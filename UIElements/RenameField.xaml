@@ -41,7 +41,7 @@
                         </TextBox.Style>
                     </TextBox>
 
-                    <Button Width="40" Background="{x:Null}" BorderBrush="{x:Null}" Style="{StaticResource IconButtonStyle}" Grid.Column="1"/>
+                    <Button Width="40" Background="{x:Null}" BorderBrush="{x:Null}" Style="{StaticResource IconButtonStyle}" Grid.Column="1" Click="Button_Click"/>
                 </Grid>
             </Grid>
         </Border>
