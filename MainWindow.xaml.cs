@@ -30,5 +30,25 @@ namespace Project_Launcher
             RenameField.NameTextBox.Text = header;
         }
 
+        public void categoriesDel(object sender, RoutedEventArgs a) =>
+        (selectedItem.Parent as ItemsControl).Items.Remove(selectedItem);
+        private void categoiesPanel_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+
+        }
+
+        private void RenameButton_Click(object sender, RoutedEventArgs e)
+        {
+            RenameField.Visibility = Visibility.Visible;
+        }
+
+        private void AddCardButton_Click(object sender, RoutedEventArgs e)
+        {
+            Card card = new Card();
+            CardsPanel.Children.Add(card);
+            card.IsEditing = true;
+            CardsPanel.Children.Add(card);
+
+        }
     }
 }
