@@ -52,8 +52,13 @@ namespace Project_Launcher
         private void AddCardButton_Click(object sender, RoutedEventArgs e)
         {
             Card card = new Card();
-            card.IsEditing = true;
+            card.IsEditing = false;
             CardsPanel.Children.Add(card);
+
+            Card card2 = new Card();
+            card2.IsEditing = true;
+            CardsPanel.Children.Add(card2);
+
         }
     }
 }

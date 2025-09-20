@@ -60,6 +60,8 @@ namespace Project_Launcher
         private void OpenFile(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             //Открыть файл
+            OpenFileDialog fileDialog = new OpenFileDialog { };
+            fileDialog.ShowDialog();
         }
 
         private void CopyPath(object sender, System.Windows.Input.MouseButtonEventArgs e)
