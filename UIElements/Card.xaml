@@ -29,14 +29,29 @@
                     CornerRadius="5" 
                     Padding="5" 
                     Grid.ColumnSpan="2">
-                <TextBlock Text="{Binding Name, FallbackValue=Название проекта}" 
-                           HorizontalAlignment="Center" 
-                           VerticalAlignment="Center" 
-                           TextWrapping="Wrap" 
-                           TextAlignment="Center"
-                           Foreground="White" 
-                           FontWeight="Bold" 
-                           FontSize="20"/>
+                <Grid>
+                    <TextBlock Name="NameBlock"
+                               Text="{Binding Name, FallbackValue=Название проекта}" 
+                               HorizontalAlignment="Center" 
+                               VerticalAlignment="Center" 
+                               TextWrapping="Wrap" 
+                               TextAlignment="Center"
+                               Foreground="White" 
+                               FontWeight="Bold" 
+                               FontSize="20"/>
+                    <TextBox Name="NameBox"
+                             Text="{Binding Name, FallbackValue=Название проекта}" 
+                             HorizontalAlignment="Center" 
+                             VerticalAlignment="Center" 
+                             TextWrapping="Wrap" 
+                             TextAlignment="Center"
+                             Foreground="White"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             FontWeight="Bold" 
+                             FontSize="20"
+                             Visibility="Collapsed"/>
+                </Grid>
             </Border>
 
             <!--Описание-->
@@ -51,16 +66,28 @@
                        FontSize="18"
                        Foreground="{Binding Color, FallbackValue=#3c4d5d}"
                        HorizontalAlignment="Center"/>
-                    <TextBlock Grid.Column="1"
-                       Text="{Binding Discription, FallbackValue=Описание проекта}"
-                       TextWrapping="WrapWithOverflow" 
-                       FontSize="18" 
-                       Margin="5,0,0,0"/>
+                    <TextBlock
+                        Name="DiscriptionBlock"
+                        Grid.Column="1"
+                        Text="{Binding Discription, FallbackValue=Описание проекта}"
+                        TextWrapping="WrapWithOverflow" 
+                        FontSize="18" 
+                        Margin="5,0,0,0"/>
+                    <TextBox 
+                        Name="DiscriptionBox"
+                        Grid.Column="1"
+                        Text="{Binding Discription, FallbackValue=Описание проекта}"
+                        TextWrapping="WrapWithOverflow" 
+                        AcceptsReturn="True"
+                        FontSize="18" 
+                        Margin="5,0,0,0"
+                        BorderThickness="0"
+                        Visibility="Collapsed"/>       
                 </Grid>
             </ScrollViewer>
 
             <!--Путь-->
-            <Viewbox Stretch="Uniform" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Viewbox Name="PathIco" Stretch="Uniform" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand">
                 <Canvas Width="34" Height="34">
                     <Path Height="26" Stretch="Fill" Width="26" Canvas.Left="4" Canvas.Top="4">
                         <Path.Fill>
@@ -72,15 +99,16 @@
                     </Path>
                 </Canvas>
             </Viewbox>
-            <TextBlock Grid.Column="1" Grid.Row="2"
+            <TextBlock Name="PathBlock"
+                       Grid.Column="1" Grid.Row="2"
                        Text="{Binding Path, FallbackValue=Путь}"
                        FontSize="14"
                        HorizontalAlignment="Left" 
                        VerticalAlignment="Center" 
-                       TextWrapping="WrapWithOverflow" Margin="5,0,0,0"/>
+                       TextWrapping="WrapWithOverflow" Margin="5,0,0,0" Cursor="Hand"/>
 
             <!--Количество файлов-->
-            <Viewbox Stretch="Uniform" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Viewbox Name="CountIco" Stretch="Uniform" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Canvas Width="34" Height="34">
                     <Path Canvas.Left="6" Canvas.Top="3" Height="28" Stretch="Fill" Width="22">
                         <Path.Fill>
@@ -92,7 +120,8 @@
                     </Path>
                 </Canvas>
             </Viewbox>
-            <TextBlock Grid.Column="1" Grid.Row="3"
+            <TextBlock Name="CountBlock"
+                       Grid.Column="1" Grid.Row="3"
                        Text="{Binding FilesCount, FallbackValue=Количество элементов, StringFormat='{}{0} элементов'}" 
                        FontSize="14"
                        HorizontalAlignment="Left" 
@@ -100,7 +129,7 @@
                        TextWrapping="WrapWithOverflow" Margin="5,0,0,0"/>
 
             <!--Дата создания-->
-            <Viewbox Stretch="Uniform" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Viewbox Name="DateIco" Stretch="Uniform" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Canvas Width="34" Height="34">
                     <Path Height="29" Stretch="Uniform" Width="29" Canvas.Left="2.5" Canvas.Top="2.5">
                         <Path.Fill>
@@ -112,7 +141,8 @@
                     </Path>
                 </Canvas>
             </Viewbox>
-            <TextBlock Grid.Column="1" Grid.Row="4"
+            <TextBlock Name="DateBlock"
+                       Grid.Column="1" Grid.Row="4"
                        Text="{Binding ChangeDate, FallbackValue=Дата изменения, StringFormat='{}{0:dd.MM.yyyy}'}" 
                        FontSize="14"
                        HorizontalAlignment="Left" 
