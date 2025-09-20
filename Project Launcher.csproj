@@ -60,7 +60,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="backClass\jsonClass.cs" />
     <Compile Include="UIElements\RenameField.xaml.cs">
       <DependentUpon>RenameField.xaml</DependentUpon>
     </Compile>

@@ -167,7 +167,7 @@
                         </Viewbox>
                     </Button>
 
-                    <Button Width="40" Background="{x:Null}" BorderBrush="{x:Null}" Style="{StaticResource FluentButton}" Margin="15,0,0,0" Name="AddCardButton">
+                    <Button Width="40" Background="{x:Null}" BorderBrush="{x:Null}" Style="{StaticResource FluentButton}" Margin="15,0,0,0" Name="AddCardButton" Click="AddCardButton_Click">
 
                         <Viewbox Stretch="Uniform">
                             <Canvas Width="34" Height="34">

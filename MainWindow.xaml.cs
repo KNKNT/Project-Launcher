@@ -1,50 +1,33 @@
-﻿using Project_Launcher.backClass;
+﻿using Project_Launcher.UIElements;
 using System;
+
 using System.Windows;
 using System.Windows.Controls;
-using static Project_Launcher.backClass.jsonClass;
+using System.Windows.Input;
 
 namespace Project_Launcher
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public interface jsonInterface
+    public partial class MainWindow : Window
     {
-        void addCategory(string _header, string _uid, Action<string, string> action = null);
-    }
-    public partial class MainWindow : Window, jsonInterface
-    {
-        string treeUid;
-        string treeItemUid;
-        public TreeViewItem selectedItem;
         int categoriesCount = 0;
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        string header;
+        public TreeViewItem selectedItem { get; set; }
+        public MainWindow() => InitializeComponent();
+        private void categoriesDel(object sender, RoutedEventArgs a) => (selectedItem.Parent as ItemsControl).Items.Remove(selectedItem);
+        private void AddCardButton_Click(object sender, RoutedEventArgs e) => selectedItem.Items.Add(new TreeViewItem { Header = header });
+        private void categoiesPanel_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e) => selectedItem = e.NewValue as TreeViewItem;
+        public void rewriteText(string _text) => selectedItem.Header = _text;
+        private void RenameButton_Click(object sender, RoutedEventArgs e) => RenameField.Visibility = (RenameField.Visibility != Visibility.Visible)
+        ? Visibility.Visible
+        : Visibility.Hidden;
         public void categoriesAdd(object sender, RoutedEventArgs e)
         {
-            string _header = $"{categoriesCount++}";
-            string _uid = $"{categoriesCount}";
-            addCategory(_header, _uid, (id, name) =>
-            {
-                MessageBox.Show($"Добавлено: {name} (ID: {id})");
-            });
+            header = $"Kategoiya {++categoriesCount}";
+            categoiesPanel.Items.Add(new TreeViewItem { Header = header });
+            RenameField.NameTextBox.Text = header;
         }
-        public void addCategory(string _header, string _uid, Action<string, string> action = null)
-        {
-            TreeViewItem treeViewItem = new TreeViewItem { Header = _header, Uid = _uid };
-            categoiesPanel.Items.Add(treeViewItem);
-            action?.Invoke(_header, _uid);
-        }
-        public void categoriesDel(object sender, RoutedEventArgs e) =>
-        (selectedItem.Parent as ItemsControl).Items.Remove(selectedItem);
-        private void categoiesPanel_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-        {
-            if (e.NewValue is TreeViewItem tree)
-                (selectedItem, treeItemUid) = (tree, tree.Uid);
-        }
-
     }
 }
