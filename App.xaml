@@ -30,6 +30,41 @@
                         </Setter>
                     </Style>
 
+                    <Style x:Key="LongButton" TargetType="{x:Type Button}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="border" 
+                                            Background="#3c4d5d" 
+                                            CornerRadius="5">       
+                                        <ContentPresenter 
+                                            HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center"
+                                            Margin="0"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="border" 
+                                                    Property="Background" 
+                                                    Value="#495E71"/>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter TargetName="border" 
+                                                    Property="Background" 
+                                                    Value="#587188"/>
+                                        </Trigger>
+                                        <Trigger Property="IsEnabled" Value="False">
+                                            <Setter TargetName="border" 
+                                                    Property="Opacity" 
+                                                    Value="0.5"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+
+
                     <Style x:Key="IconButtonStyle" TargetType="Button">
                         <Setter Property="Width" Value="40"/>
                         <Setter Property="Background" Value="{x:Null}"/>

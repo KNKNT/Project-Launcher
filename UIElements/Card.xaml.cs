@@ -43,6 +43,12 @@ namespace Project_Launcher
                 PathBlock.MouseUp += OpenFile;
 
                 //Прочее
+                CancelButton.Visibility = Visibility.Visible;
+                CancelButton.MouseUp += Cancel;
+
+                SaveButton.Visibility = Visibility.Visible;
+                SaveButton.MouseUp += SaveCard;
+
                 CountIco.Visibility = Visibility.Collapsed;
                 CountBlock.Visibility = Visibility.Collapsed;
                 DateIco.Visibility = Visibility.Collapsed;
@@ -55,11 +61,19 @@ namespace Project_Launcher
             }
         }
 
+        private void SaveCard(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //Сохранить
+        }
+
+        private void Cancel(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //Удалить
+        }
+
         private void OpenFile(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             //Открыть файл
-            OpenFileDialog fileDialog = new OpenFileDialog { };
-            fileDialog.ShowDialog();
         }
 
         private void CopyPath(object sender, System.Windows.Input.MouseButtonEventArgs e)
