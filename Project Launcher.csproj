@@ -60,6 +60,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="backFolder\cardsInfo.cs" />
+    <Compile Include="backFolder\nodeInfo.cs" />
     <Compile Include="UIElements\RenameField.xaml.cs">
       <DependentUpon>RenameField.xaml</DependentUpon>
     </Compile>

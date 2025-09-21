@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project_Launcher
 {
     public class ApplicationCard
-    {   
+    {
         public string Color { get; set; }
         public string Name { get; set; }
         public string Discription { get; set; }

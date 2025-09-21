@@ -1,6 +1,4 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 
