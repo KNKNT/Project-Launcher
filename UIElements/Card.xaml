@@ -6,148 +6,176 @@
              xmlns:local="clr-namespace:Project_Launcher"
              mc:Ignorable="d" 
              MinWidth="280" MinHeight="310" MaxWidth="500" MaxHeight="410">
-    <Border Background="White" Margin="15" CornerRadius="10" Padding="7">
-        <Border.Effect>
-            <DropShadowEffect BlurRadius="10" Direction="0" ShadowDepth="0" Opacity="0.3"/>
-        </Border.Effect>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" MinHeight="50"/>
-                <RowDefinition/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="25" MaxWidth="50"/>
-                <ColumnDefinition Width="1*"/>
-            </Grid.ColumnDefinitions>
+    <Grid>
+        <Border Background="White" Margin="15" CornerRadius="10" Padding="7">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" Direction="0" ShadowDepth="0" Opacity="0.3"/>
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="50"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25" MaxWidth="50"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
 
-            <!--Заголовок-->
-            <Border Grid.Row="0" 
-                    Background="{Binding Color, FallbackValue=#3c4d5d}" 
-                    CornerRadius="5" 
-                    Padding="5" 
-                    Grid.ColumnSpan="2">
-                <Grid>
-                    <TextBlock Name="NameBlock"
-                               Text="{Binding Name, FallbackValue=Название проекта}" 
-                               HorizontalAlignment="Center" 
-                               VerticalAlignment="Center" 
-                               TextWrapping="Wrap" 
-                               TextAlignment="Center"
-                               Foreground="White" 
-                               FontWeight="Bold" 
-                               FontSize="20"/>
-                    <TextBox Name="NameBox"
-                             Text="{Binding Name, FallbackValue=Название проекта}" 
-                             HorizontalAlignment="Center" 
-                             VerticalAlignment="Center" 
-                             TextWrapping="Wrap" 
-                             TextAlignment="Center"
-                             Foreground="White"
-                             Background="Transparent"
-                             BorderThickness="0"
-                             FontWeight="Bold" 
-                             FontSize="20"
-                             Visibility="Collapsed"/>
-                </Grid>
-            </Border>
+                <!--Заголовок-->
+                <Border Grid.Row="0" 
+                        Background="{Binding Color, FallbackValue=#3c4d5d}" 
+                        CornerRadius="5" 
+                        Padding="5" 
+                        Grid.ColumnSpan="2">
+                    <Grid>
+                        <TextBlock Name="NameBlock"
+                                   Text="{Binding Name, FallbackValue=Название проекта}" 
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center" 
+                                   TextWrapping="Wrap" 
+                                   TextAlignment="Center"
+                                   Foreground="White" 
+                                   FontWeight="Bold" 
+                                   FontSize="20"/>
+                        <TextBox Name="NameBox"
+                                 Text="{Binding Name, FallbackValue=Название проекта}" 
+                                 HorizontalAlignment="Center" 
+                                 VerticalAlignment="Center" 
+                                 TextWrapping="Wrap" 
+                                 TextAlignment="Center"
+                                 Foreground="White"
+                                 Background="Transparent"
+                                 BorderThickness="0"
+                                 FontWeight="Bold" 
+                                 FontSize="20"
+                                 Visibility="Collapsed"/>
+                    </Grid>
+                </Border>
 
-            <!--Описание-->
-            <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto" Margin="0,10,0,10">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.1*" MaxWidth="50"/>
-                        <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
+                <!--Описание-->
+                <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto" Margin="0,10,0,10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.1*" MaxWidth="50"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
 
-                    <TextBlock Text="●"
-                       FontSize="18"
-                       Foreground="{Binding Color, FallbackValue=#3c4d5d}"
-                       HorizontalAlignment="Center"/>
-                    <TextBlock
-                        Name="DiscriptionBlock"
-                        Grid.Column="1"
-                        Text="{Binding Discription, FallbackValue=Описание проекта}"
-                        TextWrapping="WrapWithOverflow" 
-                        FontSize="18" 
-                        Margin="5,0,0,0"/>
-                    <TextBox 
-                        Name="DiscriptionBox"
-                        Grid.Column="1"
-                        Text="{Binding Discription, FallbackValue=Описание проекта}"
-                        TextWrapping="WrapWithOverflow" 
-                        AcceptsReturn="True"
-                        FontSize="18" 
-                        Margin="5,0,0,0"
-                        BorderThickness="0"
-                        Visibility="Collapsed"/>       
-                </Grid>
-            </ScrollViewer>
+                        <TextBlock Text="●"
+                           FontSize="18"
+                           Foreground="{Binding Color, FallbackValue=#3c4d5d}"
+                           HorizontalAlignment="Center"/>
+                        <TextBlock
+                            Name="DiscriptionBlock"
+                            Grid.Column="1"
+                            Text="{Binding Discription, FallbackValue=Описание проекта}"
+                            TextWrapping="WrapWithOverflow" 
+                            FontSize="18" 
+                            Margin="5,0,0,0"/>
+                        <TextBox 
+                            Name="DiscriptionBox"
+                            Grid.Column="1"
+                            Text="{Binding Discription, FallbackValue=Описание проекта}"
+                            TextWrapping="WrapWithOverflow" 
+                            AcceptsReturn="True"
+                            FontSize="18" 
+                            Margin="5,0,0,0"
+                            BorderThickness="0"
+                            Visibility="Collapsed"/>
+                    </Grid>
+                </ScrollViewer>
 
-            <!--Путь-->
-            <Viewbox Name="PathIco" Stretch="Uniform" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand">
+                <!--Путь-->
+                <Viewbox Name="PathIco" Stretch="Uniform" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand">
+                    <Canvas Width="34" Height="34">
+                        <Path Height="26" Stretch="Fill" Width="26" Canvas.Left="4" Canvas.Top="4">
+                            <Path.Fill>
+                                <SolidColorBrush Color="{Binding Color, FallbackValue=#3c4d5d}" />
+                            </Path.Fill>
+                            <Path.Data>
+                                <PathGeometry Figures="M22 19V9a2 2 0 0 0-2-2h-6.764a2 2 0 0 1-1.789-1.106l-.894-1.788A2 2 0 0 0 8.763 3H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2" FillRule="Nonzero"/>
+                            </Path.Data>
+                        </Path>
+                    </Canvas>
+                </Viewbox>
+                <TextBlock Name="PathBlock"
+                           Grid.Column="1" Grid.Row="2"
+                           Text="{Binding Path, FallbackValue=Путь}"
+                           FontSize="14"
+                           HorizontalAlignment="Left" 
+                           VerticalAlignment="Center" 
+                           TextWrapping="WrapWithOverflow" Margin="5,0,0,0" Cursor="Hand"/>
+
+
+                <!--Количество файлов-->
+                <Viewbox Name="CountIco" Stretch="Uniform" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Canvas Width="34" Height="34">
+                        <Path Canvas.Left="6" Canvas.Top="3" Height="28" Stretch="Fill" Width="22">
+                            <Path.Fill>
+                                <SolidColorBrush Color="{Binding Color, FallbackValue=#3c4d5d}" />
+                            </Path.Fill>
+                            <Path.Data>
+                                <PathGeometry Figures="M9.17212 0C9.17212 0 2 0 2 0C0.899902 0 0 0.900024 0 2C0 2 0 18 0 18C0 19.1 0.899902 20 2 20C2 20 14 20 14 20C15.1001 20 16 19.1 16 18C16 18 16 6.828 16 6.828C16 6.29797 15.7891 5.789 15.4141 5.414C15.4141 5.414 10.5859 0.585999 10.5859 0.585999C10.2109 0.210999 9.7019 0 9.17212 0C9.17212 0 9.17212 0 9.17212 0ZM14.5 7L9 7L9 1.5L14.5 7L14.5 7Z" FillRule="NonZero"/>
+                            </Path.Data>
+                        </Path>
+                    </Canvas>
+                </Viewbox>
+                <TextBlock Name="CountBlock"
+                           Grid.Column="1" Grid.Row="3"
+                           Text="{Binding FilesCount, FallbackValue=Количество элементов, StringFormat='{}{0} элементов'}" 
+                           FontSize="14"
+                           HorizontalAlignment="Left" 
+                           VerticalAlignment="Center" 
+                           TextWrapping="WrapWithOverflow" Margin="5,0,0,0"/>
+
+                
+                <!--Дата создания-->
+                <Viewbox Name="DateIco" Stretch="Uniform" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Canvas Width="34" Height="34">
+                        <Path Height="29" Stretch="Uniform" Width="29" Canvas.Left="2.5" Canvas.Top="2.5">
+                            <Path.Fill>
+                                <SolidColorBrush Color="{Binding Color, FallbackValue=#3c4d5d}" />
+                            </Path.Fill>
+                            <Path.Data>
+                                <PathGeometry Figures="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V5h16V4H0V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5" FillRule="Nonzero"/>
+                            </Path.Data>
+                        </Path>
+                    </Canvas>
+                </Viewbox>
+                <TextBlock Name="DateBlock"
+                           Grid.Column="1" Grid.Row="4"
+                           Text="{Binding ChangeDate, FallbackValue=Дата изменения, StringFormat='{}{0:dd.MM.yyyy}'}" 
+                           FontSize="14"
+                           HorizontalAlignment="Left" 
+                           VerticalAlignment="Center" 
+                           TextWrapping="WrapWithOverflow" Margin="5,0,0,0"/>
+
+                <!--Cохранить-->
+                <Button Name="SaveButton" Visibility="Collapsed" Style="{StaticResource LongButton}" HorizontalContentAlignment="Center" VerticalAlignment="Center" Margin="0,15,0,0" HorizontalAlignment="Center" Width="100" Height="25" Grid.Row="3" Grid.ColumnSpan="2" BorderThickness="0" Content="Сохранить" Foreground="White" FontSize="14" FontWeight="Bold"/>
+
+            </Grid>
+        </Border>
+
+        <!--Отмена-->
+        <Border Name="CancelButton" Visibility="Collapsed" Margin="5" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Background="White" CornerRadius="15" Cursor="Hand">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" Direction="0" ShadowDepth="0" Opacity="0.3"/>
+            </Border.Effect>
+            <Viewbox Stretch="Uniform" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Height="13" Width="13">
                 <Canvas Width="34" Height="34">
-                    <Path Height="26" Stretch="Fill" Width="26" Canvas.Left="4" Canvas.Top="4">
+                    <Path Height="29" Stretch="Uniform" Width="29" Canvas.Left="2.5" Canvas.Top="2.5" >
                         <Path.Fill>
                             <SolidColorBrush Color="{Binding Color, FallbackValue=#3c4d5d}" />
                         </Path.Fill>
                         <Path.Data>
-                            <PathGeometry Figures="M22 19V9a2 2 0 0 0-2-2h-6.764a2 2 0 0 1-1.789-1.106l-.894-1.788A2 2 0 0 0 8.763 3H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2" FillRule="Nonzero"/>
+                            <PathGeometry Figures="m21.002 26.588l10.357 10.604c1.039 1.072 1.715 1.083 2.773 0l2.078-2.128c1.018-1.042 1.087-1.726 0-2.839L25.245 21L36.211 9.775c1.027-1.055 1.047-1.767 0-2.84l-2.078-2.127c-1.078-1.104-1.744-1.053-2.773 0L21.002 15.412L10.645 4.809c-1.029-1.053-1.695-1.104-2.773 0L5.794 6.936c-1.048 1.073-1.029 1.785 0 2.84L16.759 21L5.794 32.225c-1.087 1.113-1.029 1.797 0 2.839l2.077 2.128c1.049 1.083 1.725 1.072 2.773 0z" FillRule="Nonzero"/>
                         </Path.Data>
                     </Path>
                 </Canvas>
             </Viewbox>
-            <TextBlock Name="PathBlock"
-                       Grid.Column="1" Grid.Row="2"
-                       Text="{Binding Path, FallbackValue=Путь}"
-                       FontSize="14"
-                       HorizontalAlignment="Left" 
-                       VerticalAlignment="Center" 
-                       TextWrapping="WrapWithOverflow" Margin="5,0,0,0" Cursor="Hand"/>
+        </Border>
 
-            <!--Количество файлов-->
-            <Viewbox Name="CountIco" Stretch="Uniform" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Canvas Width="34" Height="34">
-                    <Path Canvas.Left="6" Canvas.Top="3" Height="28" Stretch="Fill" Width="22">
-                        <Path.Fill>
-                            <SolidColorBrush Color="{Binding Color, FallbackValue=#3c4d5d}" />
-                        </Path.Fill>
-                        <Path.Data>
-                            <PathGeometry Figures="M9.17212 0C9.17212 0 2 0 2 0C0.899902 0 0 0.900024 0 2C0 2 0 18 0 18C0 19.1 0.899902 20 2 20C2 20 14 20 14 20C15.1001 20 16 19.1 16 18C16 18 16 6.828 16 6.828C16 6.29797 15.7891 5.789 15.4141 5.414C15.4141 5.414 10.5859 0.585999 10.5859 0.585999C10.2109 0.210999 9.7019 0 9.17212 0C9.17212 0 9.17212 0 9.17212 0ZM14.5 7L9 7L9 1.5L14.5 7L14.5 7Z" FillRule="NonZero"/>
-                        </Path.Data>
-                    </Path>
-                </Canvas>
-            </Viewbox>
-            <TextBlock Name="CountBlock"
-                       Grid.Column="1" Grid.Row="3"
-                       Text="{Binding FilesCount, FallbackValue=Количество элементов, StringFormat='{}{0} элементов'}" 
-                       FontSize="14"
-                       HorizontalAlignment="Left" 
-                       VerticalAlignment="Center" 
-                       TextWrapping="WrapWithOverflow" Margin="5,0,0,0"/>
-
-            <!--Дата создания-->
-            <Viewbox Name="DateIco" Stretch="Uniform" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Canvas Width="34" Height="34">
-                    <Path Height="29" Stretch="Uniform" Width="29" Canvas.Left="2.5" Canvas.Top="2.5">
-                        <Path.Fill>
-                            <SolidColorBrush Color="{Binding Color, FallbackValue=#3c4d5d}" />
-                        </Path.Fill>
-                        <Path.Data>
-                            <PathGeometry Figures="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V5h16V4H0V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5" FillRule="Nonzero"/>
-                        </Path.Data>
-                    </Path>
-                </Canvas>
-            </Viewbox>
-            <TextBlock Name="DateBlock"
-                       Grid.Column="1" Grid.Row="4"
-                       Text="{Binding ChangeDate, FallbackValue=Дата изменения, StringFormat='{}{0:dd.MM.yyyy}'}" 
-                       FontSize="14"
-                       HorizontalAlignment="Left" 
-                       VerticalAlignment="Center" 
-                       TextWrapping="WrapWithOverflow" Margin="5,0,0,0"/>
-        </Grid>
-    </Border>
+    </Grid>
 </UserControl>
