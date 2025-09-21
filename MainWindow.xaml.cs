@@ -1,9 +1,8 @@
-﻿using Project_Launcher.UIElements;
+﻿using Project_Launcher.backFolder;
+using Project_Launcher.UIElements;
 using System;
-using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace Project_Launcher
 {
@@ -15,11 +14,11 @@ namespace Project_Launcher
         int upperCount = 0;
         int underCount = 0;
         string header;
-        public TreeViewItem selectedItem { get; set; }
+        protected TreeViewItem selectedItem { get; private set; }
         public MainWindow() => InitializeComponent();
         private void categoriesDel(object sender, RoutedEventArgs a) => (selectedItem.Parent as ItemsControl).Items.Remove(selectedItem);
         private void categoiesPanel_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e) => selectedItem = e.NewValue as TreeViewItem;
-        public void rewriteText(string _text) => selectedItem.Header = _text;
+        public void rewriteText(string text) => selectedItem.Header = text;
         private void RenameButton_Click(object sender, RoutedEventArgs e) => RenameField.Visibility = (RenameField.Visibility != Visibility.Visible)
         ? Visibility.Visible
         : Visibility.Hidden;
@@ -35,26 +34,22 @@ namespace Project_Launcher
             treeViewItem.MouseDoubleClick += TreeViewItem_Selected;
             RenameField.NameTextBox.Text = header;
         }
-
-        public void categoriesDel(object sender, RoutedEventArgs a) =>
-        (selectedItem.Parent as ItemsControl).Items.Remove(selectedItem);
-        private void categoiesPanel_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        private void TreeViewItem_Selected(object sender, RoutedEventArgs e)
         {
-
+            TreeViewItem treeViewItem = new TreeViewItem
+            {
+                Header = header,
+                Uid = $"{underCount++}"
+            };
+            selectedItem.Items.Add(treeViewItem);
         }
-
-        private void RenameButton_Click(object sender, RoutedEventArgs e)
-        {
-            RenameField.Visibility = Visibility.Visible;
-        }
-
         private void AddCardButton_Click(object sender, RoutedEventArgs e)
         {
+            nodeInfo nodeInfo = new nodeInfo();
+            nodeInfo.NodeInfo(Convert.ToInt16(selectedItem.Uid), selectedItem.Header.ToString(), selectedItem.HasItems);
             Card card = new Card();
-            CardsPanel.Children.Add(card);
             card.IsEditing = true;
             CardsPanel.Children.Add(card);
-
         }
     }
 }

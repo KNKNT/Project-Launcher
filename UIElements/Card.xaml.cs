@@ -1,6 +1,4 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 
@@ -59,7 +57,7 @@ namespace Project_Launcher
 
         private void OpenFile(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            //Открыть файл
+
         }
 
         private void CopyPath(object sender, System.Windows.Input.MouseButtonEventArgs e)
