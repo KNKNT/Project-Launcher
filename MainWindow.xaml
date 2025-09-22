@@ -232,7 +232,7 @@
 
         <rename:RenameField x:Name="RenameField" Visibility="Hidden" VerticalAlignment="Bottom" Grid.Column="0" Width="auto"/>
 
-        <DockPanel Grid.Column="1">
+        <DockPanel Grid.Column="1" Name="dockPanel">
             <Border DockPanel.Dock="Top" Height="50">
                 <TextBlock Text="Заголовок" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="22" TextWrapping="Wrap" TextAlignment="Center"/>
             </Border>

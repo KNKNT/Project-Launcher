@@ -1,17 +1,17 @@
 ﻿using System;
+using System.Runtime.Remoting.Messaging;
+using System.Security.Cryptography;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace Project_Launcher.backFolder
 {
     internal class nodeInfo 
     {
-        protected int uid { get; private set; }
+        protected int uid { get; set; }
         protected string header { get; private set; }
-        protected bool isUnder { get; private set; }
-        public void NodeInfo(int _uid, string _header, bool _isUnder)
-        {
-            uid = _uid;
-            header = _header;
-            isUnder = _isUnder;
-        }
+        //protected bool isUnder { get; private set; }
+        public nodeInfo(int uid, string header) => (this.uid, this.header) = (uid, header);
+        public TreeViewItem nodeCreate() => new TreeViewItem() { Uid = $"{uid}", Header = header };
     }
 }
