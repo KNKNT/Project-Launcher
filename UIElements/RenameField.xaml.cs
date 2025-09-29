@@ -10,7 +10,6 @@ namespace Project_Launcher.UIElements
     public partial class RenameField : UserControl
     {
         public RenameField() => InitializeComponent();
-        public event Action<string> getNewText;
         MainWindow instance = Application.Current.MainWindow as MainWindow;
         private void Button_Click(object sender, RoutedEventArgs e) => instance.rewriteText(NameTextBox.Text);
     }

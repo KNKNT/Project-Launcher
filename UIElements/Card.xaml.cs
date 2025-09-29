@@ -1,5 +1,9 @@
-﻿using System.Windows;
+﻿using Project_Launcher.backFolder;
+using System;
+using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Markup;
 
 
 namespace Project_Launcher
@@ -9,76 +13,41 @@ namespace Project_Launcher
     /// </summary>
     public partial class Card : UserControl
     {
+        public bool IsEditing { get; set; }
+        private string[] collapsed = { "CountIco", "CountBlock", "DateIco", "DateBlock", "DiscriptionBlock", "NameBlock"};
+        private string[] visible = { "NameBox", "DiscriptionBox", "CancelButton", "SaveButton" };
+
         public Card()
         {
             InitializeComponent();
+            setVisiblity(collapsed, Visibility.Collapsed);
+            setVisiblity(visible, Visibility.Visible);
+            SaveButton.Click += SaveCard;
+            SaveButton.MouseRightButtonDown += Cancel;
         }
-
-        private bool _isEditing;
-
-        public bool IsEditing
+        private void setVisiblity(string[] strings, Visibility visibility)
         {
-            get { return _isEditing; }
-            set
+            for (int i = 0; i < strings.Length; i++)
             {
-                _isEditing = value;
-                UpdateChanges();
+                UIElement data = (UIElement)dataGrid.FindName(strings[i]);
+                data.Visibility = visibility;
             }
         }
-
-        private void UpdateChanges()
+        //(selectedItem.Parent as ItemsControl).Items.Remove(selectedItem);
+        private void SaveCard(object sender, RoutedEventArgs e)
         {
-            if (_isEditing)
-            {
-                //Заголовок
-                NameBlock.Visibility = Visibility.Collapsed;
-                NameBox.Visibility = Visibility.Visible;
 
-                //Описание
-                DiscriptionBlock.Visibility = Visibility.Collapsed;
-                DiscriptionBox.Visibility = Visibility.Visible;
-
-                //Путь
-                PathIco.MouseUp += OpenFile;
-                PathBlock.MouseUp += OpenFile;
-
-                //Прочее
-                CancelButton.Visibility = Visibility.Visible;
-                CancelButton.MouseUp += Cancel;
-
-                SaveButton.Visibility = Visibility.Visible;
-                SaveButton.MouseUp += SaveCard;
-
-                CountIco.Visibility = Visibility.Collapsed;
-                CountBlock.Visibility = Visibility.Collapsed;
-                DateIco.Visibility = Visibility.Collapsed;
-                DateBlock.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                PathIco.MouseUp += CopyPath;
-                PathBlock.MouseUp += CopyPath;
-            }
         }
-
-        private void SaveCard(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            //Сохранить
-        }
-
         private void Cancel(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            //Удалить
+            jsonConverter json = new jsonConverter(true);
         }
-
         private void OpenFile(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            //Открыть файл
         }
 
         private void CopyPath(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            //Копирование в буфер пути
         }
     }
 }
