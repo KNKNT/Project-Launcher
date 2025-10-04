@@ -1,31 +1,48 @@
-﻿using Project_Launcher.backFolder;
+﻿using Microsoft.Win32;
+using Project_Launcher.backFolder;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Markup;
-
-
 namespace Project_Launcher
 {
-    /// <summary>
-    /// Логика взаимодействия для Card.xaml
-    /// </summary>
     public partial class Card : UserControl
     {
-        public bool IsEditing { get; set; }
-        private string[] collapsed = { "CountIco", "CountBlock", "DateIco", "DateBlock", "DiscriptionBlock", "NameBlock"};
-        private string[] visible = { "NameBox", "DiscriptionBox", "CancelButton", "SaveButton" };
-
+        protected string[] collapsed = { "CountIco", "CountBlock", "DateIco", "DateBlock", "DiscriptionBlock", "NameBlock" };
+        protected string[] visible = { "NameBox", "DiscriptionBox", "CancelButton", "SaveButton" };
+        public string FilePath;
+        public string Header;
+        public string BottomText;
+        public int Count;
+        public string Date;
         public Card()
         {
             InitializeComponent();
-            setVisiblity(collapsed, Visibility.Collapsed);
-            setVisiblity(visible, Visibility.Visible);
             SaveButton.Click += SaveCard;
             SaveButton.MouseRightButtonDown += Cancel;
+            PathBlock.MouseUp += OpenFile;
         }
-        private void setVisiblity(string[] strings, Visibility visibility)
+        public void GetCardInfo(string FilePath)
+        {
+            FileInfo FileInfo = new FileInfo(FilePath);
+
+            string DirPath = Path.GetDirectoryName(FilePath);
+            PathBlock.Text = DirPath;
+            CountBlock.Text = Directory.GetFiles(DirPath).Length.ToString();
+            DateBlock.Text = FileInfo.LastWriteTime.ToString();
+
+            NameBlock.Text = Header;
+            DiscriptionBlock.Text = BottomText;
+
+            MyCard card = new MyCard(true);
+
+            setVisiblity(collapsed, Visibility.Visible);
+            setVisiblity(visible, Visibility.Collapsed);
+        }
+        public void setVisiblity(string[] strings, Visibility visibility)
         {
             for (int i = 0; i < strings.Length; i++)
             {
@@ -33,21 +50,22 @@ namespace Project_Launcher
                 data.Visibility = visibility;
             }
         }
-        //(selectedItem.Parent as ItemsControl).Items.Remove(selectedItem);
         private void SaveCard(object sender, RoutedEventArgs e)
         {
-
+            GetCardInfo(FilePath);
+            jsonConverter json = new jsonConverter(true); 
         }
         private void Cancel(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            jsonConverter json = new jsonConverter(true);
         }
         private void OpenFile(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+        OpenFileDialog OpenFileDialog = new OpenFileDialog();
+        OpenFileDialog.ShowDialog();
+            GetPath(OpenFileDialog);
+            GetStrings();
         }
-
-        private void CopyPath(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-        }
+        public string GetPath(OpenFileDialog OpenFileDialog) => FilePath = OpenFileDialog.FileName;
+        public void GetStrings() => (Header, BottomText) = (NameBox.Text, DiscriptionBox.Text);
     }
 }

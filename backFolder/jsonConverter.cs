@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Linq.Expressions;
 using System.Net;
 using System.Runtime.Remoting.Messaging;
 using System.Security.Cryptography;
@@ -17,17 +18,16 @@ namespace Project_Launcher.backFolder
 {
     internal class jsonConverter
     {
-        readonly string path = AppDomain.CurrentDomain.BaseDirectory;
         public jsonConverter(bool permision)
         {
             if (permision)
             {
                 WriteOnFile();
             }
-            if (!File.Exists($"{path}nodes.json") && !File.Exists($"{path}card.json"))
+            if (!File.Exists($"nodes.json") && !File.Exists($"cards.json"))
             {
-                MessageBox.Show("Naxuy");
-                throw new Exception("Net failov");
+                File.WriteAllText($"nodes.json", "[]");
+                File.WriteAllText($"cards.json", "[]");
             }
         }
         private void WriteOnFile()
@@ -40,23 +40,34 @@ namespace Project_Launcher.backFolder
         }
         public List<MyCard> ReadCardsFromFile()
         {
-            string MyCardString = File.ReadAllText($"{path}cards.json");
+            string MyCardString = File.ReadAllText($"cards.json");
             var cards = JsonSerializer.Deserialize<List<MyCard.MyCardData>>(MyCardString);
             List<MyCard> CardsList = new List<MyCard>();
             for (int i = 0; i < cards.Count; i++)
             {
-                MyCard MyCard = new MyCard
+                MyCard MyCard = new MyCard(true)
                 {
                     Uid = cards[i].Uid,
-                    Tag = cards[i].HookId
+                    Tag = cards[i].HookId,
+                    FilePath = cards[i].PathToExecute,
+                    Header = cards[i].Header,
+                    BottomText = cards[i].BottomText
                 };
+                FileInfo FileInfo = new FileInfo(cards[i].PathToExecute);
+                string DirPath = Path.GetDirectoryName(cards[i].PathToExecute);
+                MyCard.PathBlock.Text = DirPath;
+                MyCard.CountBlock.Text = Directory.GetFiles(DirPath).Length.ToString();
+                MyCard.DateBlock.Text = FileInfo.LastWriteTime.ToString();
+
+                MyCard.NameBlock.Text = cards[i].Header;
+                MyCard.DiscriptionBlock.Text = cards[i].BottomText;
                 CardsList.Add(MyCard);
             }
             return CardsList;
         }
         public List<MyTreeViewItem> ReadNodesFromFile()
         {
-            string MyNodesString = File.ReadAllText($"{path}nodes.json");
+            string MyNodesString = File.ReadAllText($"nodes.json");
             var Nodes = JsonSerializer.Deserialize<List<MyTreeViewItem.myTreeItemData>>(MyNodesString);
             List<MyTreeViewItem> NodesList = new List<MyTreeViewItem>();
 
@@ -64,18 +75,17 @@ namespace Project_Launcher.backFolder
             {
                 NodesList.Add(CreateTreeViewItem(item));
             }
-
             return NodesList;
         }
-
         private MyTreeViewItem CreateTreeViewItem(MyTreeViewItem.myTreeItemData itemData)
         {
+            MainWindow main = Application.Current.MainWindow as MainWindow;
             MyTreeViewItem treeViewItem = new MyTreeViewItem
             {
                 Uid = itemData.Uid,
                 Header = itemData.Header
             };
-
+            main.idCounter++;
             if (itemData.items.Count > 0)
             {
                 foreach (var item in itemData.items)

@@ -3,6 +3,7 @@ using Project_Launcher.UIElements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -16,14 +17,13 @@ namespace Project_Launcher
     public partial class MainWindow : Window
     {
         int idCounterCard = 0;
-        int idCounter = 0;
-        public TreeViewItem selectedItem { get; private set; }
-        public List<MyCard> Cards = new List<MyCard>();
-        TreeViewItem parentItem;
+        public int idCounter = 0;
+        TreeViewItem selectedItem { get; set; }
+        List<MyCard> Cards = new List<MyCard>();
         public MainWindow()
         {
             InitializeComponent();
-            MyCard data = new MyCard();
+            Card data = new Card();
             jsonConverter json = new jsonConverter(false);
             foreach (var item in json.ReadCardsFromFile())
             {
@@ -34,7 +34,7 @@ namespace Project_Launcher
             {
                 item.MouseRightButtonUp += ViewItem_MouseRightButtonUp;
                 categoiesPanel.Items.Add(item);
-                idCounter++;
+                
             }
         }
         private void categoriesDel(object sender, RoutedEventArgs a) => (selectedItem.Parent as ItemsControl).Items.Remove(selectedItem);
@@ -63,7 +63,7 @@ namespace Project_Launcher
         }
         private void addCard(WrapPanel panel)
         {
-            MyCard card = new MyCard { Uid = $"{++idCounterCard}", Tag = selectedItem.Uid};
+            MyCard card = new MyCard(false) { Uid = $"{++idCounterCard}", Tag = selectedItem.Uid};
             Cards.Add(card);
             panel.Children.Add(card);
         }

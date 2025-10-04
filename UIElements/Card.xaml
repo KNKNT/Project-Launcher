@@ -8,7 +8,7 @@
              MinWidth="280" MinHeight="310" MaxWidth="500" MaxHeight="410"
              Uid="">
     <Grid>
-        <Border Background="White" Margin="15" CornerRadius="10" Padding="7" Name="dataGrid">
+        <Border Background="White" Margin="15" CornerRadius="10" Padding="7" Name="dataGrid" Cursor="">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="10" Direction="0" ShadowDepth="0" Opacity="0.3"/>
             </Border.Effect>
@@ -71,7 +71,7 @@
                         <TextBlock
                             Name="DiscriptionBlock"
                             Grid.Column="1"
-                            Text="{Binding Discription, FallbackValue=Описание проекта}"
+                            Text="Описание проекта"
                             TextWrapping="WrapWithOverflow" 
                             FontSize="18" 
                             Margin="5,0,0,0"/>
