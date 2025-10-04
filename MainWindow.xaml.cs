@@ -2,6 +2,7 @@
 using Project_Launcher.UIElements;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -27,11 +28,13 @@ namespace Project_Launcher
             foreach (var item in json.ReadCardsFromFile())
             {
                 Cards.Add(item);
+                idCounterCard++;
             }
             foreach (var item in json.ReadNodesFromFile())
             {
                 item.MouseRightButtonUp += ViewItem_MouseRightButtonUp;
                 categoiesPanel.Items.Add(item);
+                idCounter++;
             }
         }
         private void categoriesDel(object sender, RoutedEventArgs a) => (selectedItem.Parent as ItemsControl).Items.Remove(selectedItem);
@@ -54,15 +57,13 @@ namespace Project_Launcher
         }
         public void addNode(ItemsControl panel)
         {
-            TreeViewItem node = new MyTreeViewItem()
-            { Uid = $"{++idCounter}", Header = idCounter.ToString()};
+            TreeViewItem node = new MyTreeViewItem { Uid = $"{++idCounter}", Header = idCounter.ToString()};
             node.MouseRightButtonUp += ViewItem_MouseRightButtonUp;
             panel.Items.Add(node);
         }
         private void addCard(WrapPanel panel)
         {
-            MyCard card = new MyCard
-                { Uid = $"{++idCounterCard}", Tag = selectedItem.Uid};
+            MyCard card = new MyCard { Uid = $"{++idCounterCard}", Tag = selectedItem.Uid};
             Cards.Add(card);
             panel.Children.Add(card);
         }
@@ -90,51 +91,6 @@ namespace Project_Launcher
                 cards.Add(my.Dump(item as Card));
             }
             return cards;
-        }
-    }
-    public class MyCard : Card
-    {
-        public class MyCardData
-        {
-            public string Uid { get; set; }
-            public string HookId { get; set; }
-        }
-        public MyCardData Dump(Card card)
-        {
-            MyCardData data = new MyCardData
-            {
-                Uid = card.Uid,
-                HookId = card.Tag.ToString()
-            };
-            return data;
-        }
-    }
-    public class MyTreeViewItem : TreeViewItem
-    {
-        public class myTreeItemData
-        {
-            public string Header { get; set; }
-            public string Uid { get; set; }
-            public List<myTreeItemData> items { get; set; }
-        }
-        public myTreeItemData Dump()
-        {
-            myTreeItemData data = new myTreeItemData
-            {
-                Header = this.Header.ToString(),
-                Uid = this.Uid,
-                items = new List<myTreeItemData>()
-            };
-            foreach (var item in LogicalTreeHelper.GetChildren(this))
-            {
-                MyTreeViewItem my = item as MyTreeViewItem;
-                if (my == null)
-                {
-                    continue;
-                }
-                data.items.Add(my.Dump());
-            }
-            return data;
         }
     }
 }
